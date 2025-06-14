@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./student.scss";
 
 function Student_Main() {
@@ -36,50 +36,37 @@ function Student_Main() {
   const [selectedGroup, setSelectedGroup] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editedStudent, setEditedStudent] = useState({});
+  const [infoStudent, setInfoStudent] = useState(null);
 
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value.toLowerCase());
-  };
-
-  const handleGroupFilter = (e) => {
-    setSelectedGroup(e.target.value);
-  };
-
+  const handleSearch = (e) => setSearchTerm(e.target.value.toLowerCase());
+  const handleGroupFilter = (e) => setSelectedGroup(e.target.value);
   const handleEdit = (id) => {
-    const studentToEdit = students.find((s) => s.id === id);
+    const s = students.find((x) => x.id === id);
     setEditingId(id);
-    setEditedStudent({ ...studentToEdit });
+    setEditedStudent({ ...s });
   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditedStudent({ ...editedStudent, [name]: value });
+    setEditedStudent((prev) => ({ ...prev, [name]: value }));
   };
-
   const handleSave = () => {
-    const updated = students.map((s) =>
-      s.id === editingId ? editedStudent : s
+    setStudents((prev) =>
+      prev.map((s) => (s.id === editingId ? editedStudent : s))
     );
-    setStudents(updated);
     setEditingId(null);
     setEditedStudent({});
   };
-
   const handleCancel = () => {
     setEditingId(null);
     setEditedStudent({});
   };
-
-  const handleDelete = (id) => {
-    const filtered = students.filter((s) => s.id !== id);
-    setStudents(filtered);
-  };
-
-  const filteredStudents = students.filter((s) => {
-    const matchesName = s.name.toLowerCase().includes(searchTerm);
-    const matchesGroup = selectedGroup ? s.group === selectedGroup : true;
-    return matchesName && matchesGroup;
-  });
+  const handleDelete = (id) =>
+    setStudents((prev) => prev.filter((s) => s.id !== id));
+  const filtered = students.filter(
+    (s) =>
+      s.name.toLowerCase().includes(searchTerm) &&
+      (selectedGroup ? s.group === selectedGroup : true)
+  );
 
   return (
     <div className="student-page">
@@ -97,7 +84,6 @@ function Student_Main() {
             <option value="2">Fillial 2</option>
           </select>
         </div>
-
         <select className="group-select" onChange={handleGroupFilter}>
           <option value="">All Groups</option>
           <option value="Group 1">Group 1</option>
@@ -120,14 +106,14 @@ function Student_Main() {
             </tr>
           </thead>
           <tbody>
-            {filteredStudents.map((student) => (
-              <tr key={student.id}>
-                <td>{student.id}</td>
+            {filtered.map((st) => (
+              <tr key={st.id}>
+                <td>{st.id}</td>
                 <td>
-                  <img src={student.photo} alt={student.name} />
+                  <img src={st.photo} alt={st.name} />
                 </td>
                 <td>
-                  {editingId === student.id ? (
+                  {editingId === st.id ? (
                     <input
                       name="name"
                       value={editedStudent.name}
@@ -135,11 +121,11 @@ function Student_Main() {
                       className="input-edit"
                     />
                   ) : (
-                    student.name
+                    st.name
                   )}
                 </td>
                 <td>
-                  {editingId === student.id ? (
+                  {editingId === st.id ? (
                     <input
                       name="age"
                       type="number"
@@ -148,11 +134,11 @@ function Student_Main() {
                       className="input-edit"
                     />
                   ) : (
-                    student.age
+                    st.age
                   )}
                 </td>
                 <td>
-                  {editingId === student.id ? (
+                  {editingId === st.id ? (
                     <input
                       name="phone"
                       value={editedStudent.phone}
@@ -160,26 +146,26 @@ function Student_Main() {
                       className="input-edit"
                     />
                   ) : (
-                    student.phone
+                    st.phone
                   )}
                 </td>
                 <td>
-                  {editingId === student.id ? (
+                  {editingId === st.id ? (
                     <select
                       name="group"
                       value={editedStudent.group}
                       onChange={handleInputChange}
                       className="input-edit"
                     >
-                      <option value="Group 1">Group 1</option>
-                      <option value="Group 2">Group 2</option>
+                      <option>Group 1</option>
+                      <option>Group 2</option>
                     </select>
                   ) : (
-                    student.group
+                    st.group
                   )}
                 </td>
                 <td>
-                  {editingId === student.id ? (
+                  {editingId === st.id ? (
                     <input
                       name="password"
                       value={editedStudent.password}
@@ -187,32 +173,36 @@ function Student_Main() {
                       className="input-edit"
                     />
                   ) : (
-                    student.password
+                    st.password
                   )}
                 </td>
                 <td className="actions">
-                  {editingId === student.id ? (
+                  <button
+                    className="infoBtn"
+                    onClick={() => setInfoStudent(st)}
+                  >
+                    Info
+                  </button>
+                  {editingId === st.id ? (
                     <>
-                      <div className="edit-actions">
-                        <button className="saveBtn" onClick={handleSave}>
-                          Save
-                        </button>
-                        <button className="cancelBtn" onClick={handleCancel}>
-                          Cancel
-                        </button>
-                      </div>
+                      <button className="saveBtn" onClick={handleSave}>
+                        Save
+                      </button>
+                      <button className="cancelBtn" onClick={handleCancel}>
+                        Cancel
+                      </button>
                     </>
                   ) : (
                     <>
                       <button
                         className="editBtn"
-                        onClick={() => handleEdit(student.id)}
+                        onClick={() => handleEdit(st.id)}
                       >
                         Edit
                       </button>
                       <button
                         className="deleteBtn"
-                        onClick={() => handleDelete(student.id)}
+                        onClick={() => handleDelete(st.id)}
                       >
                         Delete
                       </button>
@@ -224,6 +214,36 @@ function Student_Main() {
           </tbody>
         </table>
       </div>
+
+      {infoStudent && (
+        <div className="modal-overlay" onClick={() => setInfoStudent(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h3>Student Info</h3>
+            <img src={infoStudent.photo} alt={infoStudent.name} />
+            <p>
+              <strong>ID:</strong> {infoStudent.id}
+            </p>
+            <p>
+              <strong>Name:</strong> {infoStudent.name}
+            </p>
+            <p>
+              <strong>Age:</strong> {infoStudent.age}
+            </p>
+            <p>
+              <strong>Phone:</strong> {infoStudent.phone}
+            </p>
+            <p>
+              <strong>Group:</strong> {infoStudent.group}
+            </p>
+            <p>
+              <strong>Password:</strong> {infoStudent.password}
+            </p>
+            <button className="closeBtn" onClick={() => setInfoStudent(null)}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

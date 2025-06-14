@@ -40,118 +40,34 @@
     }
   }
 
-  .student-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-    border-radius: 12px;
-    overflow: hidden;
-    table-layout: fixed; /* Tableni statik holatda tutish uchun */
+  .branch-select {
+    width: 200px;
+    margin-left: 250px;
+    position: absolute;
+    top: 30px;
+    left: 5%;
+    z-index: 1000;
 
-    th,
-    td {
-      text-align: center;
-      padding: 14px;
-      border-bottom: 1px solid #eee;
+    label {
       font-size: 16px;
-      word-wrap: break-word; /* Ushbu xususiyat bilan uzun matnlarni qirqib, kelajakda katta o'lchamdagi inputlardan saqlanadi */
+      font-weight: 500;
+      color: #333;
     }
 
-    th {
-      background-color: #f96000;
-      color: #fff;
-      font-weight: bold;
-    }
-
-    td img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
+    .select-box {
+      width: 150px;
+      padding: 0.4rem 0.8rem;
+      font-size: 15px;
+      border-radius: 8px;
       border: 2px solid #f96000;
-    }
+      background-color: white;
+      outline: none;
+      transition: 0.3s;
 
-    td input {
-      padding: 6px 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      width: 120px; /* Bu yerda inputlarning kengligini aniq belgilash kerak */
-      font-size: 14px;
-      text-align: center;
-    }
-
-    .input-edit {
-      padding: 6px 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      width: 120px;
-      font-size: 14px;
-      text-align: center;
-
+      &:hover,
       &:focus {
-        border-color: #f96000;
-        outline: none;
-        box-shadow: 0 0 5px #f9600073;
-      }
-    }
-
-    tr:hover {
-      background-color: #fff5ec;
-    }
-
-    .actions {
-      gap: 6px;
-      justify-content: center;
-
-      button {
-        padding: 6px 10px;
-        border: none;
-        border-radius: 6px;
-        color: #fff;
-        font-weight: 500;
-        font-size: 14px;
-        cursor: pointer;
-        transition: 0.3s ease;
-      }
-
-      .editBtn {
-        margin-bottom: 10px;
-        background-color: white;
-        color: #f96000;
-        border: 1px solid #f96000;
-        margin-right: 20px;
-
-        &:hover {
-          background-color: #f96000;
-          color: white;
-        }
-      }
-
-      .deleteBtn {
-        background-color: #f96000;
-
-        &:hover {
-          background-color: white;
-          color: #f96000;
-          border: 1px solid #f96000;
-        }
-      }
-
-      .saveBtn {
-        background-color: #28a745;
-
-        &:hover {
-          background-color: #1e7e34;
-        }
-      }
-
-      .cancelBtn {
-        background-color: #6c757d;
-
-        &:hover {
-          background-color: #5a6268;
-        }
+        border-color: #d94e00;
+        background-color: #fff2e6;
       }
     }
   }
@@ -165,46 +81,157 @@
   border-radius: 12px;
 }
 
-.edit-actions {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  align-items: center;
-}
-.branch-select {
-  width: 200px;
-  margin-left: 250px;
-  position: absolute;
-  top: 30px;
-  left: 5%;
-  z-index: 1000;
-  /* ... boshqa uslublar o‘sha kabi ... */
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  table-layout: fixed;
 
-  label {
+  th,
+  td {
+    text-align: center;
+    padding: 14px;
+    border-bottom: 1px solid #eee;
     font-size: 16px;
-    font-weight: 500;
-    color: #333;
+    word-wrap: break-word;
   }
 
-  .select-box {
-    width: 150px;
+  th {
+    background-color: #f96000;
+    color: #fff;
+    font-weight: bold;
+  }
 
-    padding: 0.4rem 0.8rem;
-    font-size: 15px;
-    border-radius: 8px;
+  td img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
     border: 2px solid #f96000;
-    background-color: white;
-    outline: none;
-    transition: 0.3s;
+  }
 
-    &:hover,
+  td input {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 120px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .input-edit {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 120px;
+    font-size: 14px;
+    text-align: center;
+
     &:focus {
-      border-color: #d94e00;
-      background-color: #fff2e6;
+      border-color: #f96000;
+      outline: none;
+      box-shadow: 0 0 5px #f9600073;
+    }
+  }
+
+  tr:hover {
+    background-color: #fff5ec;
+  }
+
+  .actions {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+
+    button {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin: 0 4px;
+    }
+
+    .infoBtn {
+      display: none; /* only on mobile */
+      background-color: #17a2b8;
+      color: #fff;
+      &:hover {
+        background-color: #117a8b;
+      }
+    }
+
+    .editBtn {
+      background-color: white;
+      color: #f96000;
+      border: 1px solid #f96000;
+
+      &:hover {
+        background-color: #f96000;
+        color: white;
+      }
+    }
+
+    .deleteBtn {
+      background-color: #f96000;
+
+      &:hover {
+        background-color: white;
+        color: #f96000;
+        border: 1px solid #f96000;
+      }
+    }
+
+    .saveBtn {
+      background-color: #28a745;
+
+      &:hover {
+        background-color: #1e7e34;
+      }
+    }
+
+    .cancelBtn {
+      background-color: #6c757d;
+
+      &:hover {
+        background-color: #5a6268;
+      }
+    }
+  }
+
+  .expanded-row {
+    background-color: #f9f9f9;
+
+    td {
+      padding: 12px;
+    }
+
+    .expanded-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+
+      p {
+        flex: 1 1 45%;
+        margin: 4px 0;
+
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+      }
     }
   }
 }
-/* === Student Page Responsive Styles === */
+
+/* === Responsive Styles === */
 
 /* Large tablets / small desktops */
 @media (max-width: 1200px) {
@@ -315,24 +342,33 @@
   }
   .student-table {
     min-width: 480px;
+
+    /* hide all but Name (3rd) and Actions (last) */
     th,
     td {
-      padding: 8px !important;
-      font-size: 12px !important;
+      display: none;
+      &:nth-child(3),
+      &:last-child {
+        display: table-cell !important;
+      }
     }
-    td img {
-      width: 30px;
-      height: 30px;
+    tr:hover {
+      background: none;
+    }
+    .actions .infoBtn {
+      display: inline-block;
     }
   }
+
   .actions button {
     padding: 4px 6px !important;
     font-size: 11px !important;
   }
+
   .branch-select {
     margin-right: 20px !important;
-    left: 5% !important;
-    top: 13.5% !important;
+    left: -5% !important;
+    top: 8% !important;
     height: 20px !important;
     .select-box {
       margin-right: 40px !important;
@@ -351,8 +387,7 @@
     font-size: 1.2rem !important;
   }
   .student-header .search-input,
-  .student-header .group-select,
-  .student-header {
+  .student-header .group-select {
     font-size: 12px !important;
     padding: 6px 8px !important;
   }
@@ -362,29 +397,74 @@
   }
   .student-table {
     min-width: 420px;
+
     th,
     td {
-      padding: 6px !important;
-      font-size: 11px !important;
+      display: none;
+      &:nth-child(3),
+      &:last-child {
+        display: table-cell !important;
+      }
     }
+
     td img {
       width: 25px;
       height: 25px;
     }
-  }
-  .actions button {
-    padding: 3px 5px !important;
-    font-size: 10px !important;
+    .actions button {
+      padding: 3px 5px !important;
+      font-size: 10px !important;
+    }
   }
   .branch-select {
     margin-right: 20px !important;
-    left: -25% !important;
-    top: 12% !important;
+    left: -61% !important;
+    top: 9% !important;
     height: 40px !important;
     .select-box {
       margin-right: 40px !important;
       width: 100px !important;
       height: 32px !important;
     }
+  }
+}
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 90%;
+  width: 320px;
+  text-align: center;
+  position: relative;
+
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+
+  .closeBtn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #f96000;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
   }
 }

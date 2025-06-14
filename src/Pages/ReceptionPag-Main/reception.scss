@@ -153,6 +153,7 @@
 
     @media (min-width: 769px) {
       .sidebar {
+        padding: 20px !important;
         z-index: 1000 !important;
         transform: translateX(0) !important;
         position: relative !important;
@@ -164,6 +165,9 @@
   }
 }
 @media (max-width: 468px) {
+  .nav-rec {
+    height: 80px !important;
+  }
   .circle {
     display: none !important;
   }

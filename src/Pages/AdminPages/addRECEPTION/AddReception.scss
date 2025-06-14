@@ -9,6 +9,8 @@
   flex-direction: column;
   height: 100%;
   animation: pageFade 0.8s ease;
+  overflow-y: scroll;
+  overflow-x: auto;
 
   h1 {
     color: var(--accent);
@@ -17,6 +19,7 @@
   }
 
   .content {
+    margin: 0 auto;
     width: max-content;
     align-items: center;
     justify-content: center;
@@ -77,6 +80,7 @@
     gap: 1.5rem;
 
     .form-group {
+      width: 300px;
       display: flex;
       flex-direction: column;
 
@@ -88,7 +92,7 @@
 
       input,
       select {
-        width: 350px;
+        width: 100%;
         font-family: inherit;
         font-size: 1rem;
         padding: 0.65rem 1rem;
