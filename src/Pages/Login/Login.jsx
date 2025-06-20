@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import "./login.scss";
 import {FaEye, FaEyeSlash, FaLock, FaUser} from "react-icons/fa";
-import ApiCall from "../../Utils/ApiCall";
 
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const LoginCard = () => {
     const [isShow, setIsShow] = useState(false);
@@ -11,12 +11,20 @@ const LoginCard = () => {
     const navigate = useNavigate();
 
     function handleLogin() {
-
-            ApiCall("/auth/login", { method: "POST" }, user).then((res) => {
+            axios.post("http://localhost:8080/auth/login", user).then(res => {
                 localStorage.setItem("token", res.data.access_token);
                 localStorage.setItem("refresh_token", res.data.refresh_token)
-                navigate("/reception");
-            });
+                const rolesString = res.data.roles; // bu string holatda kelgan
+                const roleNames = [...rolesString.matchAll(/name=(ROLE_[A-Z_]+)/g)].map(match => match[1]);
+
+                // Array holida saqlash
+                localStorage.setItem("roles", JSON.stringify(roleNames));
+
+                navigate("/selectRoles");
+
+
+            })
+
     }
 
 

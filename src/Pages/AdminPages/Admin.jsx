@@ -6,7 +6,6 @@ import {
   FaRegIdCard,
   FaBars,
 } from "react-icons/fa";
-import { PiPhoneCallBold } from "react-icons/pi";
 import { MdOutlineSettings } from "react-icons/md";
 import { ImExit } from "react-icons/im";
 import logo from "../../Images/Logos/logoO.png";
@@ -31,7 +30,7 @@ function Admin() {
     const decoded = jwtDecode(userToken);
     const userId = decoded.sub;
     localStorage.setItem("userId", userId);
-    ApiCall(`/auth/user/${userId}`, { method: "GET" })
+    ApiCall(`/user/${userId}`, { method: "GET" })
       .then((res) => setUser(res.data))
       .catch((err) => console.error(err));
   }

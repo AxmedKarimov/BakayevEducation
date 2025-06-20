@@ -58,7 +58,7 @@ const MyModal = ({ isOpen, onClose }) => {
       labels: {
         name: "ФИО:",
         phone: "Номер телефона:",
-        telegram: "Telegram username:",
+        telegram: "Имя пользователя телеграммы:",
       },
       placeholders: {
         name: "Введите ваше полное имя",

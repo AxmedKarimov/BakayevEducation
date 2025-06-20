@@ -32,6 +32,9 @@ import React, { createContext, useState } from "react";
 import PresentR from "./Pages/ReceptionPag-Main/PresentR/PresentR";
 import NotFound from "./Pages/NotFound/NotFound";
 import Massage from "./Pages/ReceptionPag-Main/Massage/Massage";
+import SelectRoles from "./Pages/SelectRoles/SelectRoles";
+import Appeal from "./Pages/ReceptionPag-Main/AppealPage/Appeal";
+import Branch from "./Pages/ReceptionPag-Main/Branch/Branch";
 
 function App() {
   const observerErrorHandler = () => {
@@ -57,6 +60,7 @@ function App() {
       </Route>
       <Route path="/" element={<Navbar />} />
       <Route path={"/login"} element={<Login />} />
+      <Route path={"/selectRoles"} element={<SelectRoles />} />
 
       <Route path={"/reception"} element={<Reception_Main />}>
         <Route path={"/reception/register"} element={<Register_Main />} />
@@ -66,6 +70,8 @@ function App() {
         <Route path={"/reception/setting"} element={<Setting_Main />} />
         <Route path={"/reception/present"} element={<PresentR />} />
         <Route path={"/reception/massage"} element={<Massage />} />
+        <Route path={"/reception/appeal"} element={<Appeal />} />
+        <Route path={"/reception/branch"} element={<Branch/>} />
       </Route>
       <Route path="/teacher" element={<Teacher />}>
         <Route path="/teacher/group" element={<GroupT />} />

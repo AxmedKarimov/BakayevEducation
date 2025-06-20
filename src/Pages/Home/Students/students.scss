@@ -176,7 +176,7 @@
               margin-bottom: 1rem; /* Added margin-bottom */
             }
             .res-6 h1 {
-              font-size: 22px;
+              font-size: 28px;
             }
             .res-1 h2,
             .res-2 h2,
@@ -207,7 +207,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 480px) and (max-width: 767px) {
   .students-wrapper {
     .container {
       .header h1 {
@@ -245,9 +245,11 @@
               height: 60px;
               margin-bottom: 0.8rem; /* Added margin-bottom */
             }
+
             .res-6 h1 {
               font-size: 20px;
             }
+
             .res-card h2 {
               font-size: 14px;
             }

@@ -3,7 +3,6 @@ import "./payment.scss";
 import { GrInProgress } from "react-icons/gr";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { FaCreditCard, FaMoneyBillWave } from "react-icons/fa";
-import { Link } from "lucide-react";
 
 export default function Payment_Main() {
   const [payments, setPayments] = useState([
